@@ -7,21 +7,103 @@
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <main class="shell">
-      <section class="panel input-panel">
-        <p class="eyebrow">Natural language to executable app config</p>
-        <h1>App Compiler Platform</h1>
-        <textarea id="prompt">Build a CRM with login, contacts, dashboard, role-based access, and premium plan with payments. Admins can see analytics.</textarea>
-        <button id="compile">Compile</button>
-        <div id="metrics" class="metrics"></div>
-      </section>
-      <section class="panel output-panel">
-        <div class="tabs">
-          <button data-tab="config" class="active">Config</button>
-          <button data-tab="validation">Validation</button>
-          <button data-tab="runtime">Runtime</button>
+    <main class="workspace">
+      <section class="sidebar">
+        <div class="brand-block">
+          <p class="eyebrow">Compiler for app generation</p>
+          <h1>App Compiler Platform</h1>
         </div>
-        <pre id="output">{}</pre>
+        <ol class="stage-list" aria-label="Pipeline stages">
+          <li class="stage complete">
+            <span class="stage-index">01</span>
+            <span>
+              <strong>Intent Extraction</strong>
+              <small>Prompt to typed IR</small>
+            </span>
+          </li>
+          <li class="stage complete">
+            <span class="stage-index">02</span>
+            <span>
+              <strong>System Design</strong>
+              <small>Entities, roles, flows</small>
+            </span>
+          </li>
+          <li class="stage complete">
+            <span class="stage-index">03</span>
+            <span>
+              <strong>Schema Generation</strong>
+              <small>UI, API, DB, auth</small>
+            </span>
+          </li>
+          <li class="stage complete">
+            <span class="stage-index">04</span>
+            <span>
+              <strong>Validation + Repair</strong>
+              <small>Targeted consistency fixes</small>
+            </span>
+          </li>
+          <li class="stage complete">
+            <span class="stage-index">05</span>
+            <span>
+              <strong>Runtime Simulation</strong>
+              <small>Executable smoke checks</small>
+            </span>
+          </li>
+        </ol>
+        <div class="signal-grid">
+          <div>
+            <span id="latencyMetric">--</span>
+            <small>Latency</small>
+          </div>
+          <div>
+            <span id="repairMetric">--</span>
+            <small>Repairs</small>
+          </div>
+          <div>
+            <span id="runtimeMetric">--</span>
+            <small>Runtime</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-panel">
+        <div class="prompt-row">
+          <label for="prompt">Product prompt</label>
+          <button id="compile">Compile app</button>
+        </div>
+        <textarea id="prompt">Build a CRM with login, contacts, dashboard, role-based access, and premium plan with payments. Admins can see analytics.</textarea>
+
+        <div class="summary-grid">
+          <article class="summary-card">
+            <span class="summary-label">Validation</span>
+            <strong id="validationState">Waiting</strong>
+            <small id="validationDetail">No compile result yet</small>
+          </article>
+          <article class="summary-card">
+            <span class="summary-label">Runtime</span>
+            <strong id="runtimeState">Waiting</strong>
+            <small id="runtimeDetail">Smoke tests pending</small>
+          </article>
+          <article class="summary-card">
+            <span class="summary-label">Generated Surface</span>
+            <strong id="surfaceState">--</strong>
+            <small id="surfaceDetail">Pages and endpoints</small>
+          </article>
+        </div>
+
+        <section class="output-panel">
+          <div class="output-toolbar">
+            <div class="tabs">
+              <button data-tab="overview" class="active">Overview</button>
+              <button data-tab="config">Config JSON</button>
+              <button data-tab="validation">Validation</button>
+              <button data-tab="runtime">Runtime</button>
+            </div>
+            <button id="copyJson" class="ghost-button">Copy JSON</button>
+          </div>
+          <div id="overview" class="overview"></div>
+          <pre id="output" hidden>{}</pre>
+        </section>
       </section>
     </main>
     <script src="/static/app.js"></script>
