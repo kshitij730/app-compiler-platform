@@ -24,6 +24,18 @@ uvicorn src.main:app --reload
 
 Open `http://127.0.0.1:8000` and enter a product prompt.
 
+## Deploy On Render
+
+This repo includes `render.yaml`.
+
+On Render:
+
+1. Create a new Blueprint or Web Service from this GitHub repo.
+2. Render will use:
+   - build: `pip install -r requirements.txt`
+   - start: `uvicorn src.main:app --host 0.0.0.0 --port $PORT`
+3. Open the generated Render URL and test the compiler UI.
+
 Run tests:
 
 ```bash
