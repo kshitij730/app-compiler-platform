@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>App Compiler Platform</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel input-panel">
+        <p class="eyebrow">Natural language to executable app config</p>
+        <h1>App Compiler Platform</h1>
+        <textarea id="prompt">Build a CRM with login, contacts, dashboard, role-based access, and premium plan with payments. Admins can see analytics.</textarea>
+        <button id="compile">Compile</button>
+        <div id="metrics" class="metrics"></div>
+      </section>
+      <section class="panel output-panel">
+        <div class="tabs">
+          <button data-tab="config" class="active">Config</button>
+          <button data-tab="validation">Validation</button>
+          <button data-tab="runtime">Runtime</button>
+        </div>
+        <pre id="output">{}</pre>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
